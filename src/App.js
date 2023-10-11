@@ -1,8 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Router } from 'react-router-dom';
+import Home from './paginas/Home';
 
 function App() {
   return (
+    <Router>
+      <div>
+        <Switch>
+          <Route path='/' exact Component={Home} />
+        </Switch>
+      </div>
+    </Router>
+    
+/*
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -19,6 +30,7 @@ function App() {
         </a>
       </header>
     </div>
+*/
   );
 }
 
