@@ -5,14 +5,18 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router'; // Importa useNavigate desde 'react-router'
-import firebaseApp from '../firebase';
+//import firebaseApp from '../firebase';
+import { getAuth } from 'firebase/auth'; // Importa getAuth aquí
+import { auth } from '../firebase';
 
 function Protegido({ children }) {
   const navigate = useNavigate(); // Utiliza useNavigate para la navegación
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
-    const auth = firebaseApp.auth();
+    //const auth = firebaseApp.auth();
+
+    //const auth = getAuth(firebaseApp);
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {

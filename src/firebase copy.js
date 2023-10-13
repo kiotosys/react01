@@ -1,6 +1,8 @@
 // firebase.js
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"; // Asegúrate de importar getAuth aquí
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZ0kXYLLDospUrqacn2B3rGmFT9h58oco",
@@ -13,6 +15,5 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-
-export { auth };
+const auth = getAuth(firebaseApp); // Asegúrate de obtener el objeto auth aquí
+export { firebaseApp, auth, getAnalytics }; // Exporta auth para que esté disponible en otros archivos

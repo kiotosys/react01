@@ -1,16 +1,24 @@
 // Registro.js
-
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import firebaseApp from '../firebase';
+import { auth } from '../firebase'; // Importa auth desde firebase.js
 
+/*
+import React, { useState } from 'react';
+//import { createUserWithEmailAndPassword } from 'firebase/auth';
+//import firebaseApp from '../firebase';
+
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import firebaseApp from '../firebase';
+*/
 function Registro() {
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
 
   const handleRegistro = async () => {
     try {
-      const auth = firebaseApp.auth();
+      //const auth = getAuth(firebaseApp);
+      //const auth = firebaseApp.auth();
       await createUserWithEmailAndPassword(auth, correo, contraseña);
       console.log("El usuario se regsitro con éxito");
       // El usuario se registró con éxito
