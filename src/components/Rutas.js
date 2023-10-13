@@ -18,7 +18,7 @@ function Rutas() {
     <Routes>
       <Route path="/" element={<Inicio />} />
       <Route path="/acerca-de" element={<AcercaDe />} />
-      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/react01/contacto" element={<Contacto />} />
       <Route path="/sistema-crud" element={<SistemaCRUD />} />
 
       <Route path="/sistema-crud" element={<Protegido />}>
