@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom
 //import { AuthProvider } from './paginas/AuthContext';
 import Rutas from './components/Rutas';
 import Home from './paginas/Home';
-import BarraNavegacion from './components/BarraNavegacion';
 
 
 function App() {
   return (
     <Router>
-      <BarraNavegacion />
-      <Rutas />
+      <AuthProvider> {/* Envuelve tus rutas con AuthProvider */}
+        <Rutas />
+      </AuthProvider>
     </Router>
     
     /*
