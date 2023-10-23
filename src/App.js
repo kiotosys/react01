@@ -7,7 +7,7 @@ import BarraNavegacion from './rutas/BarraNavegacion';
 
 function App() {
   return (
-    <div style={{ width:"350px", background:"yellow", padding:"10px"}}>
+    <div style={{ width:"350px", background:"yellow", padding:"10px" }} >
       <Router >
         <BarraNavegacion />
         <Rutas />
