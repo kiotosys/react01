@@ -7,7 +7,9 @@ function GaleriaPrivada() {
   return (
     <div>
       <h2>Galería Privada</h2>
-      <Outlet /> {/* Donde se renderizarán las rutas secundarias */}
+      <Outlet /> {/* Donde se renderizarán las rutas secundarias */
+      <h1>Hola Galeria....</h1>
+      }
     </div>
   );
 }

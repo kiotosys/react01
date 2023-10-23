@@ -1,18 +1,18 @@
 // AuthContext.js
-
+/*
 import React, { useContext, useEffect, useState, createContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import firebaseApp from '../firebase';
 //import firebaseApp from './firebase';
+import { auth } from '../conexion/firebase';
 
 const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+
+const AuthProvider = ({children}) => {
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
-    const auth = firebaseApp.auth();
-
+    //const auth = auth.auth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUsuario(user);
     });
@@ -28,7 +28,9 @@ function AuthProvider({ children }) {
 }
 
 function useAuth() {
-  return useContext(AuthContext);
+    return useContext(AuthContext);
 }
 
 export { AuthProvider, useAuth };
+//export default AuthProvider
+*/

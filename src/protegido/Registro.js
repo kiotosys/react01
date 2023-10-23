@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import firebaseApp from '../firebase';
+import { auth } from '../conexion/firebase';
 
 function Registro() {
   const [email, setEmail] = useState('');
@@ -10,14 +10,15 @@ function Registro() {
 
   const handleRegistro = async () => {
     try {
-      const auth = firebaseApp.auth();
+      //const auth = firebaseApp.auth();
       await createUserWithEmailAndPassword(auth, email, password);
+      console.log("Usuario se regsitro con éxito");
       // El usuario se registró con éxito
     } catch (error) {
       // Manejar errores de registro, como contraseñas débiles o correo electrónico en uso
     }
   }
-
+ 
   return (
     <div>
       <h2>Registro</h2>
