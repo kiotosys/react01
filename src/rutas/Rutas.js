@@ -4,18 +4,18 @@ import React from 'react';
 import { Route, Switch, Redirect, Routes, Router, Outlet } from 'react-router-dom';
 
 //////////////////////// AUTENTICACIÓN /////////////////
-import NuevoRegistro from '../protegido/NuevoRegistro'; // Componente de nuevo registro
-import InicioSesion from '../protegido/InicioSesion';   // Componente de inicio de sesión
+import NuevoRegistro from '../login/NuevoRegistro';
+import InicioSesion  from '../login/InicioSesion';
 
 //////////////////////// PAG. PROTEGIDA ////////////////
 import SistemaConAuth from '../protegido/SistemaConAuth';
+import AppLista       from '../protegido/AppLista';
 import GaleriaPrivada from '../protegido/GaleriaPrivada';
 
 //////////////////////// PAG. PUBLICOS /////////////////
-import Home from '../publico/Home';
+import Home     from '../publico/Home';
 import AcercaDe from '../publico/AcercaDe';
 import Contacto from '../publico/Contacto';
-import AppLista from '../protegido/AppLista';
 
 function SistemaCRUDWrapper() {
   return (
