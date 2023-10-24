@@ -12,22 +12,22 @@ function InicioSesion() {
 
   const handleInicioSesion = async () => {
     try {
-      await signInWithEmailAndPassword(auth, correo, contraseña); // Cambio aquí
-      navigate('/sistema-crud'); // O cualquier otra ruta protegida
-      console.log("Inicio de sesión exitoso");
-      // El usuario inició sesión con éxito
+      await signInWithEmailAndPassword(auth, correo, contraseña);
+      navigate('/sistema-crud');                // pasa a otra ruta protegida
+      console.log("Inicio de sesión exitoso");  // Inició de sesión con éxito
 
     } catch (error) {
       console.error('Error de inicio de sesión:', error);
       // Manejar errores de inicio de sesión, como credenciales incorrectas
     }
   }
- 
   return (
     <div>
-      <h2>Iniciar Sesión</h2>
-      <input type="email" placeholder="Correo Electrónico" value={correo} onChange={(e) => setCorreo(e.target.value)} />
-      <input type="password" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
+      <h1>Iniciar Sesión</h1>
+      <input value={correo} onChange={(e) => setCorreo(e.target.value)} 
+        type="email" placeholder="Correo Electrónico"  /><br/>
+      <input value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
+        type="password" placeholder="Contraseña"  /><br/>
       <button onClick={handleInicioSesion}>Iniciar Sesión</button>
     </div>
   );

@@ -6,9 +6,9 @@ import { Outlet } from 'react-router-dom';
 function GaleriaPrivada() {
   return (
     <div>
-      <h2>Galería Privada</h2>
+      <h1>Galería Privada</h1>
       <Outlet /> {/* Donde se renderizarán las rutas secundarias */
-      <h1>Hola Galeria....</h1>
+      <h4>Página con galeria privada....</h4>
       }
     </div>
   );

@@ -5,7 +5,7 @@ import { auth } from '../conexion/firebase';
 import AppLista from './AppLista';
 
 const SistemaConAuth = () => {
-    const navigate = useNavigate(); // Utiliza useNavigate para la navegación
+    const navigate = useNavigate(); // Usa useNavigate para navegación
     const [usuario, setUsuario] = useState(null);
   
     useEffect(() => {
@@ -14,8 +14,8 @@ const SistemaConAuth = () => {
           // El usuario ha iniciado sesión con éxito.
           setUsuario(user);
         } else {
-          // El usuario no ha iniciado sesión. Puedes redirigirlo a la página de inicio de sesión.
-          navigate('/inicio-sesion');
+          // El usuario no ha iniciado sesión. 
+          navigate('/iniciar-sesion');   //Redirige a inicio de sesión
         }
       });
   
@@ -25,17 +25,16 @@ const SistemaConAuth = () => {
     const handleCerrarSesion = () => {
       // Maneja el cierre de sesión
       signOut(auth);
-      navigate('/inicio-sesion'); // Redirige al usuario a la página de inicio de sesión después del cierre de sesión.
+      navigate('/home'); // Redirige a ...
     };
   
     if (!usuario) {
-      // Si el usuario no ha iniciado sesión, puedes mostrar un mensaje o componente de carga.
+      // Mensaje mientras carga...
       return <div>Cargando...</div>;
     }
   
     return (
       <div>
-        <h2>Sistema CRUD</h2>
         <AppLista />
         <Outlet /> {/* Donde se renderizarán las rutas secundarias */}
         <button onClick={handleCerrarSesion}>Cerrar Sesión</button>

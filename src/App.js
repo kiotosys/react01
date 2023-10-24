@@ -1,16 +1,18 @@
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom';
-import Rutas from './rutas/Rutas';
+import { AuthProvider } from './rutas/AuthContext';
 import BarraNavegacion from './rutas/BarraNavegacion';
-//import AppLista from './protegido/AppLista';
+import Rutas from './rutas/Rutas';
 
 function App() {
   return (
-    <div style={{ width:"350px", background:"yellow", padding:"10px" }} >
+    <div style={{ width:"350px", background:"violet", padding:"10px" }} >
       <Router >
-        <BarraNavegacion />
-        <Rutas />
+        <AuthProvider >
+          <BarraNavegacion />
+          <Rutas />
+        </AuthProvider>
       </Router>
     </div>
   );
