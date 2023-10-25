@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../conexion/firebase';
 
-const AppForm = () => {
+const AppForm = (props) => {
 
   ////////////////// MANEJAR INGRESO DE DATOS ///////////
   const handleStatusChange = (e) => { //Manejar cambios
@@ -23,12 +23,17 @@ const AppForm = () => {
     e.preventDefault();
 
     try {
-      if(validarForm()){
-        addDoc(collection(db, 'persona'), objeto);
-        console.log("Se registro con éxito...");
+      if(props.idActual == ""){
+        if(validarForm()){
+          addDoc(collection(db, 'persona'), objeto);
+          console.log("Se registro con éxito...");
+        }else{
+          console.log("NO se guardo...");
+        }      
       }else{
         console.log("ACTUALIZAR REGISTRO...");
-      }      
+      }
+      
     } catch (error) {
       console.error();
     }
