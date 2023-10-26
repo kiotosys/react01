@@ -41,10 +41,19 @@ const AppForm = (props) => {
   }
 
   const validarForm = () => {
-    if(objeto.nombre === ""){
+    if(objeto.nombre === "" || /^\s+$/.test(objeto.nombre)){
        alert("Escriba nombre...");
        return false;
     }
+    if(objeto.edad === "" || /^\s+$/.test(objeto.edad)){
+      alert("Escriba EDAD...");
+      return false;
+    }
+    if(objeto.genero === "" || /^\s+$/.test(objeto.genero)){
+      alert("Escriba nombre...");
+      return false;
+    }
+    
     return true;
   };
 
