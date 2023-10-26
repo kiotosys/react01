@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AppForm from './AppForm'
-import { collection, doc, onSnapshot, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../conexion/firebase';
 
 const AppLista = () => {
@@ -18,19 +18,33 @@ const AppLista = () => {
     });
   }
 
+  fnRead(); //Prueba sin useEffect
+
   ////// Delete ////////////////////
   const [idActual, setIdActual] = useState("");
-  const fnDelete = () => {
+  const [i, setI] = useState(0);
 
+  const fnDelete = async (xId) => {
+    if(window.confirm("Confirme para eliminar")){
+      await deleteDoc(doc(db, 'persona', xId));
+      console.log("Se ELIMINO con éxito...");
+    }
   }
 
   return (
     <div style={{ background:"greenyellow", padding:"10px" }}>
       <h1>AppLista.js</h1>
       <AppForm {...{idActual, setIdActual, fnRead}} />
-      <p>1. Juan Manuel -------- x --- A </p>
-      <p>2. Rosa María --------- x --- A </p>
-      <p>3. Ricardo Llerena ---- x --- A </p>
+      {
+        docBD.map((p) =>  
+          <p key={p.id} >     
+              No.  {i} {p.nombre} .....
+              <span onClick={() => fnDelete(p.id)}> x </span>
+              .....
+              <span onClick={() => setIdActual(p.id)}>A</span>
+          </p>
+        )
+      }
     </div>
   )
 }
