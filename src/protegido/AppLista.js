@@ -13,8 +13,8 @@ const AppLista = () => {
     //const xColeccionConQuery = query(collection(db, "persona"), where("nombre", "!=", ""));
     const unsubcribe = onSnapshot(xColeccionConQuery, (xDatosBD) => {
       const xDoc = [];
-      xDatosBD.forEach((doc, index) => {
-        xDoc.push({id: doc.id, ...doc.data(), orden:index+1})
+      xDatosBD.forEach((doc) => {
+        xDoc.push({id: doc.id, ...doc.data()})
       });
       setDocBD(xDoc);
     });
@@ -35,15 +35,15 @@ const AppLista = () => {
       console.log("Se ELIMINO con éxito...");
     }
   }
-
+  //style={{ background:"greenyellow", padding:"10px" }}
   return (
-    <div style={{ background:"greenyellow", padding:"10px" }}>
+    <div>
       <h1>AppLista.js</h1>
       <AppForm {...{idActual, setIdActual, fnRead}} />
       {
-        docBD.map((row) =>  
+        docBD.map((row, index) =>  
           <p key={row.id} >     
-              No.{row.orden} {row.nombre} .....
+              N.{index+1}. {row.nombre} .....
               <span onClick={() => fnDelete(row.id)}> x </span>
               .....
               <span onClick={() => setIdActual(row.id)}>A</span>

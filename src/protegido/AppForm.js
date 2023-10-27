@@ -78,9 +78,9 @@ const AppForm = (props) => {
     }
   }
   //console.log(objeto);
-
+//style={{ background:"orange", padding:"10px" }}
   return (
-    <div style={{ background:"orange", padding:"10px" }}>
+    <div>
       <h1>AppForm.js</h1>
       <form onSubmit={handleSubmit}>
         <input onChange={handleStatusChange} value={objeto.nombre} 

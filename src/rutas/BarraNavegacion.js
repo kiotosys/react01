@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-
+//style={{ background:"silver" }}
 function BarraNavegacion() {
   return (
-    <nav style={{ background:"silver" }}>
+    <nav>
       <ul>
         <li> <Link to="/home">Home</Link> </li>
         <li> <Link to="/acerca-de">Acerca de</Link> </li>

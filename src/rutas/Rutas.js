@@ -24,10 +24,10 @@ function SistemaCRUDWrapper() {
     </div>
   );
 }
-
+//style={{ background:"greenyellow" }}
 function Rutas() {
   return (
-    <div style={{ background:"greenyellow" }}>
+    <div>
     <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/acerca-de" element={<AcercaDe />} />
