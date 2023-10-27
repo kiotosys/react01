@@ -19,7 +19,7 @@ const AppForm = (props) => {
   const camposRegistro = { nombre:"", edad:"", genero:""};
   const [objeto, setObjeto] = useState(camposRegistro);
   
-  const handleSubmit = async (e) => {   //Manejar submit
+  const handleSubmit = async (e) => {   //Manejar submit 
     e.preventDefault();
     try {
       if(props.idActual == ""){
@@ -81,18 +81,42 @@ const AppForm = (props) => {
 //style={{ background:"orange", padding:"10px" }}
   return (
     <div>
+
       <h1>AppForm.js</h1>
-      <form onSubmit={handleSubmit}>
-        <input onChange={handleStatusChange} value={objeto.nombre} 
-            name='nombre' type='text' placeholder='Nombres...' /> <br />
-        <input onChange={handleStatusChange} value={objeto.edad} 
-            name='edad' type='text' placeholder='Edad...' /> <br />
-        <select onChange={handleStatusChange} value={objeto.genero} name='genero' >
-          <option value="">Seleccione...</option>
-          <option value="Masculino">Masculino</option>
-          <option value="Femenino">Femenino</option>
-        </select> <br />
-        <button>
+      <form className='card card-body' onSubmit={handleSubmit}>
+        <button className='btn btn-primary btn-block'>
+          Formulario (AppForm.js)
+        </button>
+
+        <div className='form-group input-group'>
+          <div className='input-group-text bd-light'>
+            <i className='material-icons'>group_add</i>
+          </div>
+          <input className='form-control float-start' type='text' placeholder='Nombres...'  
+            onChange={handleStatusChange} value={objeto.nombre} name='nombre' />
+        </div>
+        
+        <div className='form-group input-group'>
+          <div className='input-group-text bd-light'>
+            <i className='material-icons'>star_half</i>
+          </div>
+          <input className='form-control float-start' type='text' placeholder='Edad...'  
+            onChange={handleStatusChange} value={objeto.edad} name='edad' />
+        </div>
+
+        <div className='form-group input-group'>
+          <div className='input-group-text bd-light'>
+            <i className='material-icons'>insert_link</i>
+          </div>
+          <select className='form-control float-start' name='genero'
+            onChange={handleStatusChange} >
+            <option value="">Seleccione...</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+        </div>
+          
+        <button className='btn btn-primary btn-block'>
           {props.idActual=='' ? "Guardar": "Actualizar"}
         </button>
       </form>

@@ -19,7 +19,7 @@ const AppLista = () => {
       setDocBD(xDoc);
     });
   }
-  //console.log(docBD);
+  //console.log(docBD); 
 
   //fnRead(); //Prueba sin useEffect
   //useEffect(()=>{fnRead();}, [idActual]);
@@ -37,19 +37,46 @@ const AppLista = () => {
   }
   //style={{ background:"greenyellow", padding:"10px" }}
   return (
-    <div>
-      <h1>AppLista.js</h1>
-      <AppForm {...{idActual, setIdActual, fnRead}} />
-      {
-        docBD.map((row, index) =>  
-          <p key={row.id} >     
-              N.{index+1}. {row.nombre} .....
-              <span onClick={() => fnDelete(row.id)}> x </span>
-              .....
-              <span onClick={() => setIdActual(row.id)}>A</span>
-          </p>
-        )
-      }
+    <div className='container text-center'>
+      <div className='card bs-secondary p-3 mt-3'>
+
+        <div className='col-md-12 p-2'>
+          <div className='card mb-1'>
+            <h1>AppLista.js</h1>
+          </div>
+        </div>
+
+        <div className='col-md-12 p-2'>
+          <div className='card mb-1'>
+            <AppForm {...{idActual, setIdActual, fnRead}} />
+          </div>
+        </div>
+
+        <div className='col-md-12 p-2'>
+          {
+            docBD.map((row, index) =>  
+              <div className='card mb-1' key={row.id} >
+                <div className='card-body'>
+                  <div className='d-flex justify-content-between'>
+                    <h4>No. {index+1}. {row.nombre}</h4>
+                    <div>
+                      <i className='material-icons text-danger' 
+                        onClick={() => fnDelete(row.id)}>close</i>
+                        ...
+                        <i className='material-icons text-warning' 
+                          onClick={() => setIdActual(row.id)}>create</i>
+                    </div>
+                  </div>
+                  <div className='d-flex justify-content'>
+                    <span>Edad: {row.edad} </span> ...
+                    <a href='#'>Genero: {row.genero} </a>
+                  </div>
+                </div>
+              </div>
+            )
+         }
+        </div>
+      </div>
     </div>
   )
 }
