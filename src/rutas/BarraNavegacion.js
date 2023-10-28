@@ -21,14 +21,14 @@ function BarraNavegacion() {
             <Nav.Link> <Link to="/acerca-de">Acerca de</Link> </Nav.Link>
             <Nav.Link> <Link to="/contacto">Contacto</Link> </Nav.Link>
 
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3"> <Link to="/sistema-crud">Sistema</Link> </NavDropdown.Item>
-              <NavDropdown.Item href="#action4"> dddd ddd </NavDropdown.Item>
+            <NavDropdown title="Aplicaciones" id="navbarScrollingDropdown">
+              <NavDropdown.Item> <Link to="/sistema-crud">Sistema</Link> </NavDropdown.Item>
+              <NavDropdown.Item> <Link to="/galeria-privada">Galeria</Link> </NavDropdown.Item>
 
               <NavDropdown.Divider />
 
-              <NavDropdown.Item href="#action4"> <Link to="/nuevo-registro">Registro</Link> </NavDropdown.Item>
-              <NavDropdown.Item href="#action4"> <Link to="/iniciar-sesion">Iniciar Sesión</Link> </NavDropdown.Item>
+              <NavDropdown.Item> <Link to="/nuevo-registro">Registro</Link> </NavDropdown.Item>
+              <NavDropdown.Item> <Link to="/iniciar-sesion">Iniciar Sesión</Link> </NavDropdown.Item>
             </NavDropdown>
 
             <Nav.Link> <Link to="/nuevo-registro">Registro</Link> </Nav.Link>
