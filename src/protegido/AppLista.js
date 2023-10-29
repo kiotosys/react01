@@ -3,7 +3,10 @@ import AppForm from './AppForm'
 import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../conexion/firebase';
 
-const AppLista = () => {
+import "react-toastify/dist/ReactToastify.css";           // Para estilos
+import { ToastContainer, toast } from "react-toastify";   // Para contenedor y diseño
+
+const AppLista = (props) => {
 
   ////// Lectura fnRead ///////////
   const [docBD, setDocBD] = useState([]);
@@ -21,9 +24,8 @@ const AppLista = () => {
   }
   //console.log(docBD); 
 
-  //fnRead(); //Prueba sin useEffect
-  //useEffect(()=>{fnRead();}, [idActual]);
-  useEffect(()=>{fnRead();}, []);
+  fnRead(); //Prueba sin useEffect
+  //useEffect(()=>{fnRead();}, [props.idActual]);
 
   ////// Delete ////////////////////
   const [idActual, setIdActual] = useState("");
@@ -32,23 +34,34 @@ const AppLista = () => {
   const fnDelete = async (xId) => {
     if(window.confirm("Confirme para eliminar")){
       await deleteDoc(doc(db, 'persona', xId));
-      console.log("Se ELIMINO con éxito...");
+      toast("Doc. eliminado con éxito", {
+        type:"error",
+        autoClose:2000
+      });
+      //console.log("Se ELIMINO con éxito...");
     }
   }
+
+  const fnCerrar = async (xId) => {
+    props.handleCerrarSesion();
+  }
+
   //style={{ background:"greenyellow", padding:"10px" }}
   return (
     <div className='container text-center'>
-      <div className='card bs-secondary p-3 mt-3'>
+      <div className='card bs-secondary p-3 mt-3'> 
+
+        <ToastContainer />
 
         <div className='col-md-12 p-2'>
           <div className='card mb-1'>
-            <h1>AppLista.js</h1>
+            <AppForm {...{idActual, setIdActual, fnCerrar}} />
           </div>
         </div>
 
         <div className='col-md-12 p-2'>
           <div className='card mb-1'>
-            <AppForm {...{idActual, setIdActual, fnRead}} />
+            <h2>Lista de clientes (AppLista.js)</h2>
           </div>
         </div>
 

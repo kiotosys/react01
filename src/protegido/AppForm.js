@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../conexion/firebase';
+
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../conexion/firebase';
+import { signOut } from 'firebase/auth';
+
+import { toast } from 'react-toastify';
 
 const AppForm = (props) => {
 
   ////////////////// MANEJAR INGRESO DE DATOS ///////////
   const handleStatusChange = (e) => { //Manejar cambios
-    //e.target        //obtiene camposRegistro (objeto)
-    //e.target.value  //obtiene valor por cada tipeo
-    //{name, value}   //obtiene (name:'nombre', value:'xx')
-    //{...objeto, [name]:value }  //En Objeto se acumula c/t
+    //console.log(e.target)        //obtiene camposRegistro (objeto)
+    //console.log(e.target.value)  //obtiene valor por cada tipeo
+    //console.log({name, value})   //obtiene (name:'nombre', value:'xx')
+    //console.log({...objeto, [name]:value})  //En Objeto se acumula c/t
     const {name, value} = e.target;
     setObjeto({...objeto, [name]:value});
-    console.log(objeto);
+    //console.log(objeto);
   }
 
   ////////////////// GUARDAR-ACTUALIZAR /////////////////
@@ -25,16 +31,21 @@ const AppForm = (props) => {
       if(props.idActual == ""){
         if(validarForm()){
           addDoc(collection(db, 'persona'), objeto);
-          console.log("Se registro con éxito...");
+          toast("Se guardo con éxito...", {type:'success', autoClose:2000 });
+          //console.log("Se registro con éxito...");
         }else{
           console.log("NO se guardo...");
-        }      
+        }
+        setObjeto(camposRegistro);
       }else{
         await updateDoc(doc(collection(db, 'persona'), props.idActual), objeto);
-        console.log("ACTUALIZAR REGISTRO...");
-        props.idActual('');
+        props.setIdActual('');
+        toast("Se ACTUALIZO el REGISTRO...", {
+          type:'info',
+          autoClose:2000
+        });
+        //console.log("Se ACTUALIZO el REGISTRO...");
       }
-      setObjeto(camposRegistro);
     } catch (error) {
       console.log("Error en Crear o actualizar", error);
     }
@@ -42,15 +53,18 @@ const AppForm = (props) => {
 
   const validarForm = () => {
     if(objeto.nombre === "" || /^\s+$/.test(objeto.nombre)){
-       alert("Escriba nombre...");
-       return false;
+      toast("Escriba nombre...", {type:'warning', autoClose:2000});
+      //alert("Escriba nombre...");
+      return false;
     }
     if(objeto.edad === "" || /^\s+$/.test(objeto.edad)){
-      alert("Escriba EDAD...");
+      toast("Escriba EDAD...", {type:'warning', autoClose:2000});
+      //alert("Escriba EDAD...");
       return false;
     }
     if(objeto.genero === "" || /^\s+$/.test(objeto.genero)){
-      alert("Escriba nombre...");
+      toast("Seleccione género...", {type:'warning', autoClose:2000});
+      //alert("Seleccione género...");
       return false;
     }
     
@@ -77,15 +91,28 @@ const AppForm = (props) => {
       console.log("No hay doc");
     }
   }
+
+  const navigate = useNavigate(); // Usa useNavigate para navegación
+  const handleCerrarApp = () => {
+    // Maneja el cierre de sesión
+    signOut(auth);
+    navigate('/home'); // Redirige a ...
+  };
   //console.log(objeto);
 //style={{ background:"orange", padding:"10px" }}
   return (
     <div>
-
-      <h1>AppForm.js</h1>
+      
       <form className='card card-body' onSubmit={handleSubmit}>
+
+        <div className='col-md-12'>
+          <button onClick={handleCerrarApp} className='input-group-text bd-light' >
+            Cerrar aplicación
+          </button>
+        </div>
+
         <button className='btn btn-primary btn-block'>
-          Formulario (AppForm.js)
+          Registrar clientes (AppForm.js)
         </button>
 
         <div className='form-group input-group'>
@@ -109,7 +136,7 @@ const AppForm = (props) => {
             <i className='material-icons'>insert_link</i>
           </div>
           <select className='form-control float-start' name='genero'
-            onChange={handleStatusChange} >
+            onChange={handleStatusChange} value={objeto.genero} >
             <option value="">Seleccione...</option>
             <option value="Masculino">Masculino</option>
             <option value="Femenino">Femenino</option>
@@ -119,6 +146,7 @@ const AppForm = (props) => {
         <button className='btn btn-primary btn-block'>
           {props.idActual=='' ? "Guardar": "Actualizar"}
         </button>
+        
       </form>
     </div>
   )

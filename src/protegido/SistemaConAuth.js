@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { useNavigate, Outlet } from 'react-router-dom'; // Importa useNavigate desde 'react-router'
 import { auth } from '../conexion/firebase';
+import { useNavigate, Outlet } from 'react-router-dom'; // Importa useNavigate desde 'react-router'
 import AppLista from './AppLista';
 
 const SistemaConAuth = () => {
@@ -35,9 +35,9 @@ const SistemaConAuth = () => {
   
     return (
       <div>
-        <AppLista />
+        <AppLista {...{handleCerrarSesion}} />
         <Outlet /> {/* Donde se renderizarán las rutas secundarias */}
-        <button onClick={handleCerrarSesion}>Cerrar Sesión</button>
+        {/* <button onClick={handleCerrarSesion}>Cerrar Sesión</button> */}
       </div>
     );
 }

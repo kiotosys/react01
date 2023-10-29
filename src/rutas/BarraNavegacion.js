@@ -17,32 +17,33 @@ function BarraNavegacion() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll >
 
-            <Nav.Link> <Link to="/home">Home</Link> </Nav.Link>
-            <Nav.Link> <Link to="/acerca-de">Acerca de</Link> </Nav.Link>
-            <Nav.Link> <Link to="/contacto">Contacto</Link> </Nav.Link>
+            <Nav.Link as={Link} to="/home"> Home </Nav.Link>
+            <Nav.Link as={Link} to="/acerca-de"> Acerca de </Nav.Link>
+            <Nav.Link as={Link} to="/contacto"> contacto </Nav.Link>
 
             <NavDropdown title="Aplicaciones" id="navbarScrollingDropdown">
-              <NavDropdown.Item> <Link to="/sistema-crud">Sistema</Link> </NavDropdown.Item>
-              <NavDropdown.Item> <Link to="/galeria-privada">Galeria</Link> </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/sistema-crud"> Sistema </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/galeria-privada"> Galeria </NavDropdown.Item>
 
               <NavDropdown.Divider />
 
-              <NavDropdown.Item> <Link to="/nuevo-registro">Registro</Link> </NavDropdown.Item>
-              <NavDropdown.Item> <Link to="/iniciar-sesion">Iniciar Sesión</Link> </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/nuevo-registro"> Registro </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/iniciar-sesion"> Iniciar Sesión </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link> <Link to="/nuevo-registro">Registro</Link> </Nav.Link>
-            <Nav.Link> <Link to="/iniciar-sesion">Iniciar Sesión</Link> </Nav.Link>
+            <Nav.Link as={Link} to="/nuevo-registro"> Registro </Nav.Link>
+            <Nav.Link as={Link} to="/iniciar-sesion"> Iniciar Sesión </Nav.Link>
             
           </Nav>
           <Form className="d-flex">
             <Form.Control
+              name='buscador'
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button name='btnBuscar' variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
